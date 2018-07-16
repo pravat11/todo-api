@@ -52,6 +52,7 @@
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
     "mssql": "^3.3.0",
+    "pg": "^7.4.3",
     "serve-favicon": "^2.4.3",
     "swagger-jsdoc": "^1.9.4",
     "winston": "^2.3.1",

@@ -14,11 +14,11 @@ export function up(knex) {
     table.specificType('is_active', 'bit').nullable();
     table.specificType('is_completed', 'bit').nullable();
     table
-      .specificType('created_at', 'datetimeoffset')
+      .specificType('created_at', 'timestamp')
       .defaultTo(knex.fn.now())
       .notNullable();
     table
-      .specificType('updated_at', 'datetimeoffset')
+      .specificType('updated_at', 'timestamp')
       .defaultTo(knex.fn.now())
       .notNullable();
   });
