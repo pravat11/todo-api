@@ -21,18 +21,9 @@
     "test:coverage": "NODE_ENV=test nyc --require babel-register --reporter lcov --reporter text mocha --recursive test"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"]
   },
-  "keywords": [
-    "javascript",
-    "node",
-    "express",
-    "es6",
-    "api"
-  ],
+  "keywords": ["javascript", "node", "express", "es6", "api"],
   "private": true,
   "author": "Saugat Acharya <mesaugat@gmail.com>",
   "license": "MIT",
@@ -56,9 +47,7 @@
     "serve-favicon": "^2.4.3",
     "swagger-jsdoc": "^1.9.4",
     "winston": "^2.3.1",
-    "winston-daily-rotate-file": "^1.4.6"
-  },
-  "devDependencies": {
+    "winston-daily-rotate-file": "^1.4.6",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
@@ -76,6 +65,7 @@
     "rimraf": "^2.6.1",
     "supertest": "^3.0.0"
   },
+  "devDependencies": {},
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.10.8"
