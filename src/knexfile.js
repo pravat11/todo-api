@@ -7,7 +7,7 @@ require('dotenv').config({ path: __dirname + '/../.env' });
 module.exports = {
   client: process.env.DB_CLIENT,
   connection: {
-    connectionString: process.env.DB_URL,
+    connectionString: process.env.NODE_ENV === 'production' ? process.env.DB_URL : process.env.DB_URL_LOCAL,
     ssl: true
   },
   migrations: {
