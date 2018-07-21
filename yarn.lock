@@ -806,6 +806,10 @@ bookshelf-camelcase@^2.0.1:
     lodash.camelcase "~4.3.0"
     lodash.snakecase "~4.1.0"
 
+bookshelf-cast@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bookshelf-cast/-/bookshelf-cast-1.0.2.tgz#3aa5332dd18017343d089878abab34cf2e84f161"
+
 bookshelf@^0.10.3:
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/bookshelf/-/bookshelf-0.10.4.tgz#fe06984456740417aba13d0d76c7b065d1f1774d"
