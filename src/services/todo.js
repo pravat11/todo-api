@@ -124,9 +124,13 @@ export async function updateTodo(id, payload) {
     throw new Boom.notFound('Todo not found');
   }
 
+  logger.log(`Casting boolean values into integers`);
+
+  const castedPayload = castBooleanValuesToBit(payload);
+
   logger.log(`Updating todo with id ${id}`);
 
-  const result = await new Todos({ id }).save(payload, { patch: true }).then(todo => todo.refresh());
+  const result = await new Todos({ id }).save(castedPayload, { patch: true }).then(todo => todo.refresh());
 
   return {
     data: result,
@@ -148,4 +152,18 @@ export async function deleteTodo(id) {
   return {
     message: 'Todo deleted successfully'
   };
+}
+
+function castBooleanValuesToBit(object) {
+  const castedPayload = {};
+
+  Object.keys(object).forEach(key => {
+    if (typeof object[key] === 'boolean') {
+      castedPayload[key] = object[key] ? 1 : 0;
+    } else {
+      castedPayload[key] = object[key];
+    }
+  });
+
+  return castedPayload;
 }
