@@ -1,8 +1,10 @@
 import * as todoService from '../services/todo';
 
 export function getTodos(req, res, next) {
+  const filter = req.query.filter;
+
   todoService
-    .getAllTodos()
+    .getAllTodos(filter)
     .then(data => res.json(data))
     .catch(err => next(err));
 }
