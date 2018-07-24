@@ -68,6 +68,7 @@
     "nyc": "^11.4.1",
     "pg": "^7.4.3",
     "prettier": "^1.7.4",
+    "pusher": "^2.0.1",
     "rimraf": "^2.6.1",
     "serve-favicon": "^2.4.3",
     "supertest": "^3.0.0",

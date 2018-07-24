@@ -11,6 +11,7 @@ import logger from './utils/logger';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import json from './middlewares/json';
+import { init } from './utils/notifier';
 import * as errorHandler from './middlewares/errorHandler';
 
 const app = express();
@@ -33,6 +34,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(errorHandler.bodyParser);
 app.use(json);
+
+init();
 
 // Everything in the public folder is served as static content
 app.use(express.static(path.join(__dirname, '/../public')));
