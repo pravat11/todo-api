@@ -42,12 +42,12 @@ export async function validateLogin(loginPayload) {
 
   logger.log('info', 'Creating new session');
 
-  const result = await new LoginSessions({ token, userAccountId: login.id, isActive: 1 })
+  const data = await new LoginSessions({ token, userAccountId: login.id, isActive: 1 })
     .save()
     .then(session => session.refresh());
 
   return {
-    result,
+    data,
     message: 'Login successful'
   };
 }
