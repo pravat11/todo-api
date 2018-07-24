@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
 import * as todoValidators from './validators/todo';
+import * as loginValidators from './validators/login';
+import * as loginController from './controllers/login';
 import * as todosController from './controllers/todos';
 import * as messageValidators from './validators/message';
 import * as messageController from './controllers/message';
@@ -18,18 +20,25 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/todo/:id', todosController.getTodo);
+router.get('/todo/:id', loginValidators.authenticate, todosController.getTodo);
 
-router.get('/todos', todosController.getTodos);
+router.get('/todos', loginValidators.authenticate, todosController.getTodos);
 
-router.post('/todo', todoValidators.validateCreateTodoRequest, todosController.addTodo);
+router.post('/todo', loginValidators.authenticate, todoValidators.validateCreateTodoRequest, todosController.addTodo);
 
-router.put('/todo/:id', todoValidators.validateUpdateTodoRequest, todosController.updateTodo);
+router.put(
+  '/todo/:id',
+  loginValidators.authenticate,
+  todoValidators.validateUpdateTodoRequest,
+  todosController.updateTodo
+);
 
-router.delete('/todo/:id', todosController.removeTodo);
+router.delete('/todo/:id', loginValidators.authenticate, todosController.removeTodo);
 
-router.get('/visibility-filters', visibilityFilterController.getVisibilityFilters);
+router.get('/visibility-filters', loginValidators.authenticate, visibilityFilterController.getVisibilityFilters);
 
 router.post('/send-message', messageValidators.validateSendMessageRequest, messageController.sendMessage);
+
+router.post('/login', loginValidators.validateLoginRequest, loginController.validateLogin);
 
 export default router;
