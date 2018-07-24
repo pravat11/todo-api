@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import * as validators from './validators/todo';
+
+import * as todoValidators from './validators/todo';
 import * as todosController from './controllers/todos';
+import * as messageValidators from './validators/message';
+import * as messageController from './controllers/message';
 import * as visibilityFilterController from './controllers/visibilityFilter';
 
 /**
@@ -19,12 +22,14 @@ router.get('/todo/:id', todosController.getTodo);
 
 router.get('/todos', todosController.getTodos);
 
-router.post('/todo', validators.validateCreateTodoRequest, todosController.addTodo);
+router.post('/todo', todoValidators.validateCreateTodoRequest, todosController.addTodo);
 
-router.put('/todo/:id', validators.validateUpdateTodoRequest, todosController.updateTodo);
+router.put('/todo/:id', todoValidators.validateUpdateTodoRequest, todosController.updateTodo);
 
 router.delete('/todo/:id', todosController.removeTodo);
 
 router.get('/visibility-filters', visibilityFilterController.getVisibilityFilters);
+
+router.post('/send-message', messageValidators.validateSendMessageRequest, messageController.sendMessage);
 
 export default router;
