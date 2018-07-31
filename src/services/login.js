@@ -8,7 +8,7 @@ import LoginSessions from '../models/loginSessions';
 export async function getToken(token) {
   logger.log('info', 'Validating token');
 
-  const activeSession = await LoginSessions.where({ token, is_active: 1 }).fetch();
+  const activeSession = await LoginSessions.where({ token }).fetch();
 
   if (!activeSession) {
     throw new Boom.badRequest(`Invalid token`);
@@ -35,16 +35,12 @@ export async function validateLogin(loginPayload) {
   if (activeSession) {
     logger.log('info', 'Clearing previous session status');
 
-    await new LoginSessions({ id: activeSession.id })
-      .save({ is_active: 0 }, { patch: true })
-      .then(session => session.refresh());
+    await new LoginSessions({ id: activeSession.id }).fetch().then(session => session.destroy());
   }
 
   logger.log('info', 'Creating new session');
 
-  const data = await new LoginSessions({ token, userAccountId: login.id, isActive: 1 })
-    .save()
-    .then(session => session.refresh());
+  const data = await new LoginSessions({ token, userAccountId: login.id }).save().then(session => session.refresh());
 
   return {
     data,

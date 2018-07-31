@@ -37,7 +37,12 @@ router.delete('/todo/:id', loginValidators.authenticate, todosController.removeT
 
 router.get('/visibility-filters', loginValidators.authenticate, visibilityFilterController.getVisibilityFilters);
 
-router.post('/send-message', messageValidators.validateSendMessageRequest, messageController.sendMessage);
+router.post(
+  '/send-message',
+  // loginValidators.authenticate,
+  messageValidators.validateSendMessageRequest,
+  messageController.sendMessage
+);
 
 router.post('/login', loginValidators.validateLoginRequest, loginController.validateLogin);
 

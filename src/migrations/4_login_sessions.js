@@ -16,7 +16,6 @@ export function up(knex) {
       .references('id')
       .inTable('logins');
     table.specificType('token', 'varchar(100)').notNullable();
-    table.specificType('is_active', 'bit').nullable();
     table
       .specificType('created_at', 'timestamp')
       .defaultTo(knex.fn.now())
