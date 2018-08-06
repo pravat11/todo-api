@@ -1,17 +1,21 @@
 /**
- * Create logins table.
+ * Create chat_messages table.
  *
  * @param  {object} knex
  * @return {Promise}
  */
 export function up(knex) {
-  return knex.schema.createTable('logins', table => {
+  return knex.schema.createTable('chat_messages', table => {
     table
       .increments('id')
       .primary()
       .unsigned();
-    table.specificType('username', 'varchar(20)').notNullable();
-    table.specificType('password', 'varchar(20)').nullable();
+    table.specificType('message', 'varchar(500)').notNullable();
+    table
+      .specificType('sender_user_id', 'integer')
+      .notNullable()
+      .references('id')
+      .inTable('logins');
     table
       .specificType('created_at', 'timestamp')
       .defaultTo(knex.fn.now())
@@ -24,11 +28,11 @@ export function up(knex) {
 }
 
 /**
- * Drop logins table.
+ * Drop chat_messages table.
  *
  * @param  {object} knex
  * @return {Promise}
  */
 export function down(knex) {
-  return knex.schema.dropTable('logins');
+  return knex.schema.dropTable('chat_messages');
 }
