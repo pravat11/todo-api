@@ -11,7 +11,7 @@ export async function getToken(token) {
   const activeSession = await LoginSessions.where({ token }).fetch();
 
   if (!activeSession) {
-    throw new Boom.badRequest(`Invalid token`);
+    throw new Boom.unauthorized(`Invalid token`);
   }
 
   return activeSession;
