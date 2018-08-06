@@ -46,4 +46,6 @@ router.post(
 
 router.post('/login', loginValidators.validateLoginRequest, loginController.validateLogin);
 
+router.get('/validate-session', loginValidators.authenticate, (req, res, next) => res.json(true));
+
 export default router;

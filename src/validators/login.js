@@ -20,7 +20,7 @@ export function validateLoginRequest(req, res, next) {
 
 export function authenticate(req, res, next) {
   if (!req.header('token')) {
-    throw new Boom.badRequest(`Access token not present in request header`);
+    throw new Boom.unauthorized(`Access token not present in request header`);
   }
 
   return getToken(req.header('token'))
