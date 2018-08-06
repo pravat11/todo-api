@@ -39,7 +39,7 @@ router.get('/visibility-filters', loginValidators.authenticate, visibilityFilter
 
 router.post(
   '/send-message',
-  // loginValidators.authenticate,
+  loginValidators.authenticate,
   messageValidators.validateSendMessageRequest,
   messageController.sendMessage
 );
