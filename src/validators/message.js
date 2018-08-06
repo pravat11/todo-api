@@ -7,7 +7,10 @@ const SEND_MESSAGE_SCHEMA = {
     .max(500),
   message: Joi.string()
     .label('message')
-    .max(500)
+    .max(500),
+  username: Joi.string()
+    .label('username')
+    .max(100)
 };
 
 export function validateSendMessageRequest(req, res, next) {
