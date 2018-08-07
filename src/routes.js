@@ -44,6 +44,8 @@ router.post(
   messageController.sendMessage
 );
 
+router.get('/chat-messages', loginValidators.authenticate, messageController.getAllMessages);
+
 router.post('/login', loginValidators.validateLoginRequest, loginController.validateLogin);
 
 router.get('/validate-session', loginValidators.authenticate, (req, res, next) => res.json(true));

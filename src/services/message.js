@@ -46,3 +46,14 @@ export async function sendMessage(payload) {
     message: 'Sent message successfully'
   };
 }
+
+export async function getMessages() {
+  logger.log('info', 'Fetching chat messages');
+
+  const messages = await knex.select('message', 'sender_user_id', 'created_at').from('chat_messages');
+
+  return {
+    data: messages,
+    message: 'List of chat messages'
+  };
+}

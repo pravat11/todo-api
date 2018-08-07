@@ -6,3 +6,10 @@ export function sendMessage(req, res, next) {
     .then(data => res.json(data))
     .catch(err => next(err));
 }
+
+export function getAllMessages(req, res, next) {
+  messageService
+    .getMessages()
+    .then(data => res.json(data))
+    .catch(err => next(err));
+}
