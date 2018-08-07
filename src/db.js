@@ -5,7 +5,7 @@ import bookshelfJs from 'bookshelf';
 /**
  * Database connection.
  */
-const knex = knexJs(knexConfig);
+export const knex = knexJs(knexConfig);
 const bookshelf = bookshelfJs(knex);
 
 bookshelf.plugin(['virtuals', 'pagination', 'visibility', 'bookshelf-camelcase', 'bookshelf-cast']);
