@@ -17,6 +17,11 @@ export function up(knex) {
       .references('id')
       .inTable('logins');
     table
+      .specificType('friendship_id', 'integer')
+      .notNullable()
+      .references('id')
+      .inTable('friendships');
+    table
       .specificType('created_at', 'timestamp')
       .defaultTo(knex.fn.now())
       .notNullable();
