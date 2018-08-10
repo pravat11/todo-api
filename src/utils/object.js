@@ -1,3 +1,9 @@
+const camelize = require('camelize');
+
+export function toCamelCase(object) {
+  return camelize(object);
+}
+
 /**
  * Get the copy of object without attributes.
  *

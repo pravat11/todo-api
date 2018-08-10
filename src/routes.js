@@ -1,10 +1,12 @@
 import { Router } from 'express';
 
+import * as userValidators from './validators/user';
 import * as todoValidators from './validators/todo';
 import * as loginValidators from './validators/login';
 import * as loginController from './controllers/login';
 import * as todosController from './controllers/todos';
 import * as messageValidators from './validators/message';
+import * as friendsController from './controllers/friends';
 import * as messageController from './controllers/message';
 import * as visibilityFilterController from './controllers/visibilityFilter';
 
@@ -44,7 +46,18 @@ router.post(
   messageController.sendMessage
 );
 
-router.get('/chat-messages', loginValidators.authenticate, messageController.getAllMessages);
+router.get(
+  '/friendship/:friendshipId(\\d+)/chat-messages',
+  loginValidators.authenticate,
+  messageController.getAllMessages
+);
+
+router.get(
+  '/user/:userId(\\d+)/friends',
+  loginValidators.authenticate,
+  userValidators.validateUser,
+  friendsController.getFriends
+);
 
 router.post('/login', loginValidators.validateLoginRequest, loginController.validateLogin);
 

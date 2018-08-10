@@ -14,7 +14,19 @@ export async function getToken(token) {
     throw new Boom.unauthorized(`Invalid token`);
   }
 
-  return activeSession;
+  return true;
+}
+
+export async function getUser(id) {
+  logger.log('info', 'Fetching user info');
+
+  const login = await Logins.where({ id }).fetch();
+
+  if (!login) {
+    throw new Boom.badRequest(`User not found`);
+  }
+
+  return true;
 }
 
 export async function validateLogin(loginPayload) {

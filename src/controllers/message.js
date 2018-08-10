@@ -8,8 +8,10 @@ export function sendMessage(req, res, next) {
 }
 
 export function getAllMessages(req, res, next) {
+  const { friendshipId } = req.params;
+
   messageService
-    .getMessages()
+    .getMessages(friendshipId)
     .then(data => res.json(data))
     .catch(err => next(err));
 }

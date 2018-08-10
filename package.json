@@ -45,6 +45,7 @@
     "bookshelf-camelcase": "^2.0.1",
     "bookshelf-cast": "^1.0.2",
     "boom": "^5.1.0",
+    "camelize": "^1.0.0",
     "chai": "^4.0.0",
     "codecov": "^2.2.0",
     "compression": "^1.6.2",
