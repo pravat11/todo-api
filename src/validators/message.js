@@ -11,6 +11,10 @@ const SEND_MESSAGE_SCHEMA = {
     .required(),
   friendshipId: Joi.number()
     .label('friendshipId')
+    .required(),
+  timestamp: Joi.string()
+    .label('timestamp')
+    .max(200)
     .required()
 };
 
