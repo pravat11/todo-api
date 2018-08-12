@@ -59,8 +59,14 @@ export async function getMessages(friendshipId) {
       .where({ friendship_id: friendshipId })
   );
 
+  const data = messages.map(message => {
+    message.status = 2;
+
+    return message;
+  });
+
   return {
-    data: messages,
+    data,
     message: 'List of chat messages'
   };
 }
