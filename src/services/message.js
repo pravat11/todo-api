@@ -30,11 +30,15 @@ export async function sendMessage(payload) {
       }
     });
 
-  const username = (await Logins.where({ id: senderUserId }).fetch({ columns: ['username'] })).toJSON();
+  const { username } = (await Logins.where({ id: senderUserId }).fetch({ columns: ['username'] })).toJSON();
 
   logger.log('info', 'Pushing message to pusher');
 
-  await trigger(`chitchat-channel-${friendshipId}`, 'message-sent', { message, timestamp, username });
+  await trigger(`chitchat-channel-${friendshipId}`, 'message-sent', {
+    message,
+    timestamp,
+    username
+  });
 
   logger.log('info', 'Message pushed to pusher server');
 
